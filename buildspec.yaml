@@ -1,0 +1,12 @@
+version: 0.2
+phases:
+  build:
+    commands:
+      #Lambda deploy reference
+      #https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-deploying.html
+      #Build spec reference
+      #https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html
+      # Package SAM template
+      - sam package --template-file template.yaml --s3-bucket ems-sam-artifacts --output-template-file packaged.yaml
+      # Deploy packaged SAM template
+      - sam deploy --template-file packaged.yaml --stack-name ems-sam-application --capabilities CAPABILITY_IAM  --region us-east-1

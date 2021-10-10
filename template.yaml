@@ -1,0 +1,116 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  sam-node-ems-app
+
+  Sample SAM Template for sam-node-ems-app
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 900
+    VpcConfig:
+      SecurityGroupIds:
+        - sg-09c502d21ea58a914
+      SubnetIds:
+        - subnet-0d1e198160bb35434
+  # Api:
+  #   Cors:
+  #     AllowMethods: "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'"
+  #     AllowHeaders: "'Content-Type,X-Amz-Date,X-Amz-Security-Token,Authorization,X-Api-Key,X-Requested-With,Accept,Access-Control-Allow-Methods,Access-Control-Allow-Origin,Access-Control-Allow-Headers'"
+  #     AllowOrigin: "'*'"      
+
+Resources:
+  MyApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: prod
+      Auth:
+        DefaultAuthorizer: MyLambdaRequestAuthorizer
+        Authorizers:
+          MyLambdaRequestAuthorizer:
+            FunctionPayloadType: REQUEST
+            FunctionArn: !GetAtt MyAuthFunction.Arn
+            Identity:
+              Headers:
+                - authorization
+
+  GetLeaveFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: functions/
+      Handler: leaves.getLeaveHandler
+      Runtime: nodejs14.x
+      Role: arn:aws:iam::877228122437:role/usacademy-lambda-role
+      Architectures:
+        - x86_64
+      Events:
+        GetLeave:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            RestApiId: !Ref MyApi
+            Path: /employee/{id}/leave
+            Method: get
+
+  AddLeaveFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: functions/
+      Handler: leaves.addLeaveHandler
+      Runtime: nodejs14.x
+      Role: arn:aws:iam::877228122437:role/usacademy-lambda-role
+      Architectures:
+        - x86_64
+      Events:
+        GetLeave:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            RestApiId: !Ref MyApi
+            Path: /employee/leave
+            Method: post
+
+  UpdateLeaveFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: functions/
+      Handler: leaves.updateLeaveHandler
+      Role: arn:aws:iam::877228122437:role/usacademy-lambda-role
+      Runtime: nodejs14.x 
+      Architectures:
+        - x86_64
+      Events:
+        GetLeave:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            RestApiId: !Ref MyApi
+            Path: /employee/update-leave/{date}
+            Method: put
+
+  MyAuthFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/
+      Handler: authorizer.handler
+      Runtime: nodejs14.x
+      # Layers:
+      #   - !Ref externalDep
+        
+  # externalDep:
+  #   Type: AWS::Serverless::LayerVersion
+  #   Properties:
+  #       LayerName: SharedExternalDependencies
+  #       Description: Shared external dependencies.
+  #       ContentUri: layers/nodejs/
+  #       CompatibleRuntimes:
+  #           - nodejs14.x
+  #       RetentionPolicy: Retain
+  #   Metadata:
+  #       BuildMethod: nodejs14.x    
+
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  TeamNodeJsAPI:
+    Description: "API Gateway endpoint URL for Prod stage for TEAM NODE JS APPLICATION"
+    Value: !Sub "https://${MyApi}.execute-api.${AWS::Region}.amazonaws.com/prod/"
