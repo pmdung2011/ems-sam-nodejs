@@ -1,0 +1,88 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'sam-node-ems-app
+
+  Sample SAM Template for sam-node-ems-app
+
+  '
+Globals:
+  Function:
+    Timeout: 900
+    VpcConfig:
+      SecurityGroupIds:
+      - sg-09c502d21ea58a914
+      SubnetIds:
+      - subnet-0d1e198160bb35434
+Resources:
+  MyApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: prod
+      Auth:
+        DefaultAuthorizer: MyLambdaRequestAuthorizer
+        Authorizers:
+          MyLambdaRequestAuthorizer:
+            FunctionPayloadType: REQUEST
+            FunctionArn:
+              Fn::GetAtt:
+              - MyAuthFunction
+              - Arn
+            Identity:
+              Headers:
+              - authorization
+  GetLeaveFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://ems-sam-artifacts/20e8b50cbdc2f8a98de7a892091426be
+      Handler: leaves.getLeaveHandler
+      Runtime: nodejs14.x
+      Role: arn:aws:iam::877228122437:role/usacademy-lambda-role
+      Events:
+        GetLeave:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: MyApi
+            Path: /employee/{id}/leave
+            Method: get
+  AddLeaveFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://ems-sam-artifacts/20e8b50cbdc2f8a98de7a892091426be
+      Handler: leaves.addLeaveHandler
+      Runtime: nodejs14.x
+      Role: arn:aws:iam::877228122437:role/usacademy-lambda-role
+      Events:
+        GetLeave:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: MyApi
+            Path: /employee/leave
+            Method: post
+  UpdateLeaveFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://ems-sam-artifacts/20e8b50cbdc2f8a98de7a892091426be
+      Handler: leaves.updateLeaveHandler
+      Role: arn:aws:iam::877228122437:role/usacademy-lambda-role
+      Runtime: nodejs14.x
+      Events:
+        GetLeave:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: MyApi
+            Path: /employee/update-leave/{date}
+            Method: put
+  MyAuthFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://ems-sam-artifacts/20e8b50cbdc2f8a98de7a892091426be
+      Handler: authorizer.handler
+      Runtime: nodejs14.x
+Outputs:
+  TeamNodeJsAPI:
+    Description: API Gateway endpoint URL for Prod stage for TEAM NODE JS APPLICATION
+    Value:
+      Fn::Sub: https://${MyApi}.execute-api.${AWS::Region}.amazonaws.com/prod/
