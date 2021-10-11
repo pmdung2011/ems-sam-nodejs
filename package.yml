@@ -81,6 +81,13 @@ Resources:
       CodeUri: s3://ems-sam-artifacts/d8697b39a411289a34f9e1c4bcdc799d
       Handler: authorizer.handler
       Runtime: nodejs14.x
+
+  MyAuthFunction2:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://ems-sam-artifacts/d8697b39a411289a34f9e1c4bcdc799d
+      Handler: authorizer.handler
+      Runtime: nodejs14.x
 Outputs:
   TeamNodeJsAPI:
     Description: API Gateway endpoint URL for Prod stage for TEAM NODE JS APPLICATION
