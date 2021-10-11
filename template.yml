@@ -42,8 +42,6 @@ Resources:
       Handler: leaves.getLeaveHandler
       Runtime: nodejs14.x
       Role: arn:aws:iam::877228122437:role/usacademy-lambda-role
-      Architectures:
-        - x86_64
       Events:
         GetLeave:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -59,8 +57,6 @@ Resources:
       Handler: leaves.addLeaveHandler
       Runtime: nodejs14.x
       Role: arn:aws:iam::877228122437:role/usacademy-lambda-role
-      Architectures:
-        - x86_64
       Events:
         GetLeave:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -76,8 +72,6 @@ Resources:
       Handler: leaves.updateLeaveHandler
       Role: arn:aws:iam::877228122437:role/usacademy-lambda-role
       Runtime: nodejs14.x 
-      Architectures:
-        - x86_64
       Events:
         GetLeave:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
