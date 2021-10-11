@@ -37,8 +37,6 @@ Resources:
       Handler: leaves.getLeaveHandler
       Runtime: nodejs14.x
       Role: arn:aws:iam::877228122437:role/usacademy-lambda-role
-      Architectures:
-      - x86_64
       Events:
         GetLeave:
           Type: Api
@@ -54,8 +52,6 @@ Resources:
       Handler: leaves.addLeaveHandler
       Runtime: nodejs14.x
       Role: arn:aws:iam::877228122437:role/usacademy-lambda-role
-      Architectures:
-      - x86_64
       Events:
         GetLeave:
           Type: Api
@@ -71,8 +67,6 @@ Resources:
       Handler: leaves.updateLeaveHandler
       Role: arn:aws:iam::877228122437:role/usacademy-lambda-role
       Runtime: nodejs14.x
-      Architectures:
-      - x86_64
       Events:
         GetLeave:
           Type: Api
