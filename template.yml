@@ -88,6 +88,15 @@ Resources:
       Runtime: nodejs14.x
       # Layers:
       #   - !Ref externalDep
+
+  MyAuthFunction2:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/
+      Handler: authorizer.handler
+      Runtime: nodejs14.x
+          # Layers:
+          #   - !Ref externalDep
         
   # externalDep:
   #   Type: AWS::Serverless::LayerVersion
@@ -99,7 +108,8 @@ Resources:
   #           - nodejs14.x
   #       RetentionPolicy: Retain
   #   Metadata:
-  #       BuildMethod: nodejs14.x    
+  #       BuildMethod: nodejs14.x 
+  #########   
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
