@@ -1,0 +1,24 @@
+{
+  "name": "ems-sam-nodejs",
+  "version": "1.0.0",
+  "description": "This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. It includes the following files and folders.",
+  "main": "index.js",
+  "dependencies": {
+    "@prisma/client": "^3.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "prisma": "^3.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pmdung2011/ems-sam-nodejs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pmdung2011/ems-sam-nodejs/issues"
+  },
+  "homepage": "https://github.com/pmdung2011/ems-sam-nodejs#readme"
+}
