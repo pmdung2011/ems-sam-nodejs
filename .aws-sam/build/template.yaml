@@ -81,12 +81,6 @@ Resources:
       CodeUri: MyAuthFunction
       Handler: authorizer.handler
       Runtime: nodejs14.x
-  MyAuthFunction2:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: MyAuthFunction2
-      Handler: authorizer.handler
-      Runtime: nodejs14.x
 Outputs:
   TeamNodeJsAPI:
     Description: API Gateway endpoint URL for Prod stage for TEAM NODE JS APPLICATION

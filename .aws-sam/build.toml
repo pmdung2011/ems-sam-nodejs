@@ -7,6 +7,6 @@ runtime = "nodejs14.x"
 source_md5 = ""
 architecture = "x86_64"
 packagetype = "Zip"
-functions = ["GetLeaveFunction", "AddLeaveFunction", "UpdateLeaveFunction", "MyAuthFunction", "MyAuthFunction2"]
+functions = ["GetLeaveFunction", "AddLeaveFunction", "UpdateLeaveFunction", "MyAuthFunction"]
 
 [layer_build_definitions]
