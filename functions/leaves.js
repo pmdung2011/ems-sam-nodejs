@@ -164,7 +164,7 @@ function fnToLeaveModel(leaveObject) {
     reason: leaveObject.reason,
   }
 }
-
+//Function to generate common response
 function generateResponse(code, message, data) {
   let response
   response = {
