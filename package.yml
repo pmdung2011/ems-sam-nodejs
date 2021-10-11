@@ -33,7 +33,7 @@ Resources:
   GetLeaveFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://aws-sam-cli-managed-default-samclisourcebucket-10c4cmc1v3zon/62089d6f6d063891e850711a669541d4
+      CodeUri: s3://aws-sam-cli-managed-default-samclisourcebucket-10c4cmc1v3zon/449f6046f72d18dc11e92ec36572eb73
       Handler: leaves.getLeaveHandler
       Runtime: nodejs14.x
       Role: arn:aws:iam::877228122437:role/usacademy-lambda-role
@@ -50,7 +50,7 @@ Resources:
   AddLeaveFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://aws-sam-cli-managed-default-samclisourcebucket-10c4cmc1v3zon/62089d6f6d063891e850711a669541d4
+      CodeUri: s3://aws-sam-cli-managed-default-samclisourcebucket-10c4cmc1v3zon/449f6046f72d18dc11e92ec36572eb73
       Handler: leaves.addLeaveHandler
       Runtime: nodejs14.x
       Role: arn:aws:iam::877228122437:role/usacademy-lambda-role
@@ -67,7 +67,7 @@ Resources:
   UpdateLeaveFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://aws-sam-cli-managed-default-samclisourcebucket-10c4cmc1v3zon/62089d6f6d063891e850711a669541d4
+      CodeUri: s3://aws-sam-cli-managed-default-samclisourcebucket-10c4cmc1v3zon/449f6046f72d18dc11e92ec36572eb73
       Handler: leaves.updateLeaveHandler
       Role: arn:aws:iam::877228122437:role/usacademy-lambda-role
       Runtime: nodejs14.x
@@ -84,7 +84,7 @@ Resources:
   MyAuthFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://aws-sam-cli-managed-default-samclisourcebucket-10c4cmc1v3zon/62089d6f6d063891e850711a669541d4
+      CodeUri: s3://aws-sam-cli-managed-default-samclisourcebucket-10c4cmc1v3zon/449f6046f72d18dc11e92ec36572eb73
       Handler: authorizer.handler
       Runtime: nodejs14.x
 Outputs:
