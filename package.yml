@@ -82,11 +82,11 @@ Resources:
       Handler: authorizer.handler
       Runtime: nodejs14.x
   MyAuthFunction2:
-        Type: AWS::Serverless::Function
-        Properties:
-          CodeUri: s3://ems-sam-artifacts/8adc99423161396072814b5b0da08a7a
-          Handler: authorizer.handler
-          Runtime: nodejs14.x    
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://ems-sam-artifacts/8adc99423161396072814b5b0da08a7a
+      Handler: authorizer.handler
+      Runtime: nodejs14.x    
 Outputs:
   TeamNodeJsAPI:
     Description: API Gateway endpoint URL for Prod stage for TEAM NODE JS APPLICATION
