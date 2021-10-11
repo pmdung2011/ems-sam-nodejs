@@ -9,8 +9,10 @@
     "prisma": "^3.2.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prisma:generate": "prisma generate",
+    "prisma:introspect": "prisma introspect"
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pmdung2011/ems-sam-nodejs.git"
