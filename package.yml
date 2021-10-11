@@ -33,7 +33,7 @@ Resources:
   GetLeaveFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://ems-sam-artifacts/d8697b39a411289a34f9e1c4bcdc799d
+      CodeUri: s3://ems-sam-artifacts/3185d51f73a0309889ed48a90bbc8c79
       Handler: leaves.getLeaveHandler
       Runtime: nodejs14.x
       Role: arn:aws:iam::877228122437:role/usacademy-lambda-role
@@ -48,7 +48,7 @@ Resources:
   AddLeaveFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://ems-sam-artifacts/d8697b39a411289a34f9e1c4bcdc799d
+      CodeUri: s3://ems-sam-artifacts/3185d51f73a0309889ed48a90bbc8c79
       Handler: leaves.addLeaveHandler
       Runtime: nodejs14.x
       Role: arn:aws:iam::877228122437:role/usacademy-lambda-role
@@ -63,7 +63,7 @@ Resources:
   UpdateLeaveFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://ems-sam-artifacts/d8697b39a411289a34f9e1c4bcdc799d
+      CodeUri: s3://ems-sam-artifacts/3185d51f73a0309889ed48a90bbc8c79
       Handler: leaves.updateLeaveHandler
       Role: arn:aws:iam::877228122437:role/usacademy-lambda-role
       Runtime: nodejs14.x
@@ -78,7 +78,7 @@ Resources:
   MyAuthFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://ems-sam-artifacts/d8697b39a411289a34f9e1c4bcdc799d
+      CodeUri: s3://ems-sam-artifacts/3185d51f73a0309889ed48a90bbc8c79
       Handler: authorizer.handler
       Runtime: nodejs14.x
 Outputs:
@@ -86,3 +86,4 @@ Outputs:
     Description: API Gateway endpoint URL for Prod stage for TEAM NODE JS APPLICATION
     Value:
       Fn::Sub: https://${MyApi}.execute-api.${AWS::Region}.amazonaws.com/prod/
+      ####
