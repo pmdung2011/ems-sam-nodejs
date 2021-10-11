@@ -87,13 +87,6 @@ Resources:
       Handler: authorizer.handler
       Runtime: nodejs14.x
 
-  MyAuthFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: functions/
-      Handler: authorizer.handler
-      Runtime: nodejs14.x
-
   # externalDep:
   #   Type: AWS::Serverless::LayerVersion
   #   Properties:
